@@ -1,0 +1,20 @@
+<section>
+    <div class="container">
+        @if (!showList) {
+        <router-outlet></router-outlet>
+        } @else {
+        <header class="products__header">
+            <p>Welcome to our shopping website, start browsing...</p>
+            <p-floatlabel variant="on">
+                <input pInputText id="on_label" [(ngModel)]="searchInput" autocomplete="off" />
+                <label for="on_label">Search products.</label>
+            </p-floatlabel>
+        </header>
+        <div class="products__cards">
+            @for (card of filteredProducts; track card.id; let i = $index){
+            <app-single-product [productObj]="card"></app-single-product>
+            }
+        </div>
+        }
+    </div>
+</section>

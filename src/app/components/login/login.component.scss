@@ -1,0 +1,63 @@
+.login {
+    .container {
+        padding-top: 1.5rem;
+        border-top: solid 1px black;
+        width: 90%;
+        margin: auto;
+
+        form {
+            width: 40%;
+            margin: auto;
+            margin-bottom: 0.75rem;
+
+            div {
+                margin-bottom: 0.5rem;
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    margin-bottom: 0.25rem;
+                }
+
+                input {
+                    outline: 0;
+                    width: 100%;
+                    padding: 0.25rem 0.5rem;
+                    border: black 1px solid;
+                    border-radius: 0.25rem;
+                    margin-bottom: 0.25rem;
+
+                    &.ng-invalid.ng-touched {
+                        border: red 1px solid;
+                    }
+                }
+            }
+
+            button {
+                width: 100%;
+                font-weight: bolder;
+                font-size: 1rem;
+                background-color: black;
+                color: white;
+                padding-block: 0.3rem;
+                margin-bottom: 0.75rem;
+
+                &:disabled {
+                    background-color: rgba(0, 0, 0, 0.25);
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    .register {
+        text-align: center;
+
+        a {
+            color: black;
+            font-weight: bolder;
+            font-size: 1rem;
+            text-decoration: underline;
+        }
+    }
+}

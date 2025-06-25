@@ -1,0 +1,46 @@
+<section>
+    <div class="container">
+        <div class="header"> YOUR CART
+        </div>
+        <p-table [value]="objectInCart">
+            <ng-template #header>
+                <tr>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th>Price</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-product>
+                <tr>
+                    <td class="img-container">
+                        <img [src]="product.images?.[0]" [alt]="product.title" class="w-24 rounded" />
+                    </td>
+                    <td>
+                        <h4>{{ product.title }}</h4>
+                        <p>{{ product.description }}</p>
+                    </td>
+                    <td class="increment-buttons">
+                        <div class="buttons">
+                            <button (click)="increment(product)">+</button>
+                            <div class="enumerator">{{ product.quantity || 1 }}</div>
+                            <button (click)="decrement(product)">-</button>
+                        </div>
+                        <div class="message">
+                            @if (product.stock > 0 && product.quantity == product.stock) {
+                            <p-message severity="error">You reached the maximum amount!</p-message>
+                            }
+                        </div>
+                    </td>
+                    <td class="remove-buttons"><button (click)="removeItem(product)">Remove</button></td>
+                    <td class="item-total-price px-0">
+                        {{ (product.price | totalPrice:product.quantity) + '' | currency: 'USD':'symbol' :'1.2-2' }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="footer"> Total: {{ totalPriceValue | currency: 'USD':'symbol' :'1.2-2' }}
+        </div>
+    </div>
+</section>

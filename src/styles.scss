@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import "primeicons/primeicons.css";
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--bs-dark);
+}
+
+a {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--bs-dark);
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    background: none;
+    border: 0;
+}
+
+i {
+    color: black;
+    vertical-align: middle;
+}

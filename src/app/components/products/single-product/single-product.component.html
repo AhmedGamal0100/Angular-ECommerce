@@ -1,0 +1,31 @@
+<div class="single-card__container">
+    <div class="single-card__img">
+        @if (productObj()?.availabilityStatus === 'Low Stock') {
+        <p class="last">Last Pieces</p>
+        } @else if(productObj()?.availabilityStatus === 'In Stock'){
+        <p class="available">Available</p>
+        }
+        <a [routerLink]="['/products', 'details', productObj()?.id]" (click)="onProductClick(productObj())"><img [src]="
+            productObj()?.images?.[0]" alt="card image"></a>
+    </div>
+    <div class="single-card__content p-3">
+        <a [routerLink]="['/products', 'details', productObj()?.id]" (click)="onProductClick(productObj())">
+            <h5>{{productObj()?.title}}</h5>
+        </a>
+        <div class="single-card__category">
+            <p>Category: {{productObj()?.category}}</p>
+            <h5>${{productObj()?.price}}</h5>
+        </div>
+        <div class="mb-4 flex justify-center">
+            <p-rating class="custom-rate" [(ngModel)]="ratingStars" [disabled]="true" />
+        </div>
+        @if (isClicked()) {
+        <button class="w-100 btn btn-dark" (click)="addToCart()">Remove from Cart</button>
+        } @else {
+        <button class="w-100 btn btn-light" (click)="addToCart()">Add to Cart</button>
+        }
+    </div>
+</div>
+<div class="card flex justify-center gap-2">
+    <p-toast />
+</div>

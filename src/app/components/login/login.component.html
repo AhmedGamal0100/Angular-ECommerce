@@ -1,0 +1,39 @@
+<div class="login">
+    <div class="container">
+        <form #loginFrom="ngForm" (ngSubmit)="submit(loginFrom)">
+            <div>
+                <label for="email">Email Address</label>
+                <input type="email" ngModel required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                    id="email" name="email" #email="ngModel" placeholder="Email address">
+                @if (email.touched && email.errors) {
+                @if (email.getError('required')) {
+                <p-message severity="error">Email is required!</p-message>
+                } @else if (email.getError('pattern')) {
+                <p-message severity="error">Invalid email format!</p-message>
+                }
+                }
+            </div>
+            <div>
+                <label for="pass">Password</label>
+                <input type="password" ngModel required pattern="^.{8,}$" id="pass" name="password" #password="ngModel"
+                    placeholder="Password">
+                @if (password.touched && password.errors) {
+                @if (password.getError('required')) {
+                <p-message severity="error">Password is required!</p-message>
+
+                } @else if (password.getError('pattern')) {
+                <p-message severity="error">Password must be more than 8 characters!</p-message>
+                }
+                }
+            </div>
+            <button [disabled]="!loginFrom.valid">Login</button>
+            @if (notCorrectEmail()) {
+            <p-message severity="error">Invalid email or password</p-message>
+            }
+
+        </form>
+        <p class="register">Don't have account?
+            <strong><a routerLink="/register">Register</a></strong>
+        </p>
+    </div>
+</div>

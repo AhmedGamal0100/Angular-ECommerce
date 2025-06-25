@@ -1,0 +1,63 @@
+<div class="details-card">
+    <div class="details-img-overall">
+        <div class="details-img">
+            <img [src]="selectedImage" [alt]="product.title" />
+            <span class="badge" [ngClass]="{
+      'in-stock': product.availabilityStatus === 'In Stock',
+      'low-stock': product.availabilityStatus === 'Low Stock'
+    }">
+                {{ product.availabilityStatus }}
+            </span>
+        </div>
+        <div class="detail-img-slider">
+            @for(img of product.images; track img; let i = $index){
+            <div class="detail-img-container">
+                <img [src]="img" [alt]="img" (click)="onSelectImage(img)">
+            </div>
+            }
+        </div>
+    </div>
+
+    <div class="details-content">
+        <div class="details-header">
+            <h2>{{ product.title }}</h2>
+            <h4 class="brand">{{ product.brand }}</h4>
+            <p class="desc">{{ product.description }}</p>
+            <div class="tags">
+                <span *ngFor="let tag of product?.tags" class="tag">{{ tag }}</span>
+            </div>
+        </div>
+        <hr>
+        <div class="price-row">
+            <span class="price">${{ product.price }}</span>
+            <span class="discount" *ngIf="product?.discountPercentage">
+                -{{ product.discountPercentage }}%
+            </span>
+        </div>
+        <div class="rating">
+            <span><strong>Rating:</strong> {{ product.rating }} ★ ({{product.reviews.length}})</span>
+            <span><strong>Stock:</strong> {{ product.stock }} left</span>
+        </div>
+        <hr>
+        <div class="shipping">
+            <div><strong>Shipping:</strong> {{ product.shippingInformation }}</div>
+            <div><strong>Return:</strong> {{ product.returnPolicy }}</div>
+            <div><strong>Warranty:</strong> {{ product.warrantyInformation }}</div>
+        </div>
+        <hr>
+        <div class="cart">
+            <a routerLink="/products">To Products</a>
+            <div class="increment-buttons">
+                <div class="buttons">
+                    <button (click)="increment(product)">+</button>
+                    <div class="enumerator">{{ product.quantity }}</div>
+                    <button (click)="decrement(product)">-</button>
+                </div>
+            </div>
+            <button (click)="addToCart()">Add</button>
+        </div>
+    </div>
+</div>
+<div class="card flex justify-center gap-2">
+    <p-toast />
+</div>

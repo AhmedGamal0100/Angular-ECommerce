@@ -1,0 +1,113 @@
+<div class="register">
+    <div class="container">
+        <form [formGroup]="registerForm" (ngSubmit)="submit()">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" formControlName="name" placeholder="Name">
+                @if (registerForm.get("name")?.touched && registerForm.get("name")?.errors) {
+                <p-message severity="error">Name is required!</p-message>
+                }
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="test@gmail.com">
+                @if (registerForm.get("email")?.touched && registerForm.get("email")?.errors) {
+                @if (registerForm.get("email")?.getError('required')) {
+                <p-message severity="error">Email is required!</p-message>
+                } @else if (registerForm.get("email")?.getError('pattern')) {
+                <p-message severity="error">Invalid email format!</p-message>
+                }
+                }
+            </div>
+            <div>
+                <label for="user">User Name</label>
+                <input type="text" id="user" formControlName="userName" placeholder="testTest">
+                @if (registerForm.get("userName")?.touched && registerForm.get("userName")?.errors) {
+                @if (registerForm.get("userName")?.getError('required')) {
+                <p-message severity="error">User name is required!</p-message>
+                } @else if (registerForm.get("userName")?.getError('pattern')) {
+                <p-message severity="error">User name mustn't contain spaces!</p-message>
+                }
+                }
+            </div>
+            <div>
+                <label for="pass">Password</label>
+                <input type="password" id="pass" formControlName="password" placeholder="Test1@aa">
+                @if (registerForm.get("password")?.touched && registerForm.get("password")?.errors) {
+                @if (registerForm.get("password")?.getError('required')) {
+                <p-message severity="error">Password is required!</p-message>
+                } @else if (registerForm.get("password")?.getError('pattern')) {
+                <p-message severity="error">Password must contain at least 1 lowercase, 1 uppercase, 1 digit, special
+                    characters & minimum 8 characters!</p-message>
+                }
+                }
+            </div>
+            <div>
+                <label for="confirmPass">Confirm Password</label>
+                <input type="password" id="confirmPass" formControlName="confirmPassword" placeholder="Test1@aa">
+                @if (registerForm.get("confirmPassword")?.touched && registerForm.get("confirmPassword")?.errors) {
+                @if (registerForm.get("confirmPassword")?.getError('required')) {
+                <p-message severity="error">Confirm password is required!</p-message>
+                }
+                } @else if (!registerForm.get("confirmPassword")?.errors && registerForm.errors?.['passwordMismatch']) {
+                <p-message severity="error">Password doesn't match!</p-message>
+                }
+            </div>
+            <div formArrayName="fullAddress">
+                <div>
+                    <label>Address</label>
+                    <button type="button" (click)="addAddress()">Add new address</button>
+                </div>
+                <div *ngFor="let address of addresses.controls let i = index">
+                    <div [formGroupName]="i">
+                        <input type="text" placeholder="address" id="address" formControlName="address">
+                        <input type="text" placeholder="street" id="street" formControlName="street">
+                        <input type="text" placeholder="country" id="country" formControlName="country">
+                        <input type="text" placeholder="city" id="city" formControlName="city">
+                        <button type="button" (click)="deleteAddress(i)">Delete</button>
+                    </div>
+                    @if (addresses.at(i).get('address')?.getError('required') &&
+                    addresses.at(i).get('address')?.touched) {
+                    <p-message severity="error">Address field must be fill!</p-message>
+                    } @else if (addresses.at(i).get('street')?.getError('required') &&
+                    addresses.at(i).get('street')?.touched) {
+                    <p-message severity="error">Street field must be fill!</p-message>
+                    } @else if (addresses.at(i).get('country')?.getError('required') &&
+                    addresses.at(i).get('country')?.touched) {
+                    <p-message severity="error">Country field must be fill!</p-message>
+                    } @else if (addresses.at(i).get('city')?.getError('required') &&
+                    addresses.at(i).get('city')?.touched) {
+                    <p-message severity="error">City field must be fill!</p-message>
+                    }
+                </div>
+            </div>
+            <div class="buttons">
+                <button [disabled]="!registerForm.valid">Register</button>
+                <button type='button' (click)="clearForm()">Clear</button>
+            </div>
+        </form>
+        <p class="login">Already have an account! <strong><a routerLink="/login">Login</a></strong>
+        </p>
+    </div>
+</div>
+
+
+<div class="card flex justify-center border-0">
+    <p-toast position="top-center" key="confirm" (onClose)="onClose()" [baseZIndex]="5000">
+        <ng-template let-message #headless let-closeFn="closeFn">
+            <section class="flex flex-col p-4 gap-4 w-full bg-primary/70 rounded-xl">
+                <div class="mb-3">
+                    You have unsaved changes. Are you sure you want to leave this page?
+                </div>
+                <div class="toast-btns">
+                    <p-button severity="contrast" label="Confirm?" (onClick)="onUserConfirmed()" size="small" />
+                    <p-button severity="danger" label="Cancel" (onClick)="onUserCancelled()" size="small" />
+                </div>
+            </section>
+        </ng-template>
+    </p-toast>
+</div>
+
+<div class="card flex justify-center gap-2">
+    <p-toast/>
+</div>

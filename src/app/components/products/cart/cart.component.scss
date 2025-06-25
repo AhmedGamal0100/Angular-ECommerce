@@ -1,0 +1,129 @@
+section {
+    .container {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .img-container {
+        img {
+            width: 80%;
+        }
+    }
+}
+
+.style {
+    color: white;
+}
+
+:host ::ng-deep .p-datatable-thead>tr>th,
+:host ::ng-deep .p-datatable-tbody>tr>td {
+    background: white;
+    color: black;
+
+    button {
+        color: black;
+    }
+
+    h4 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 0.75rem;
+        color: var(--p-zinc-500);
+        text-align: justify;
+    }
+}
+
+:host ::ng-deep .p-datatable-tbody>tr>td {
+    max-width: 10rem;
+}
+
+:host ::ng-deep .p-datatable-thead>tr>th {
+    font-size: 0.9rem;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+    background-color: var(--p-zinc-700);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-block: 0.5rem;
+}
+
+.footer {
+    text-align: right;
+    background-color: var(--p-zinc-700);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+}
+
+.increment-buttons {
+    text-align: center;
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.25rem;
+
+        div.enumerator {
+            display: inline;
+            padding: 0.5rem 1rem;
+            background-color: var(--p-zinc-700);
+            border: 1px solid white;
+            color: white;
+            border-radius: 0.25rem;
+        }
+
+        button {
+            border-radius: 0.25rem;
+            border: 1px solid black;
+            padding: 0.5rem 1rem;
+            font-weight: bolder;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            color: white;
+            background-color: var(--p-zinc-700);
+            border-color: white;
+        }
+    }
+
+    .message {
+        padding-inline: 3rem;
+
+        ::ng-deep .p-message.p-message-error{
+            scale: 0.91; 
+        }
+    }
+}
+
+.remove-buttons {
+    text-align: center;
+
+    button {
+        border-radius: 0.25rem;
+        border: 1px solid black;
+        padding: 0.5rem 1rem;
+        font-weight: bolder;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        color: white;
+        background-color: var(--p-zinc-700);
+        border-color: white;
+    }
+}
+
+.item-total-price {
+    text-align: center;
+}
