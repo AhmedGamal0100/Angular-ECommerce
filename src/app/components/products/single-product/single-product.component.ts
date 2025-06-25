@@ -9,10 +9,12 @@ import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { ProductDetailsService } from '../../../services/product-details.service';
+import { TotalPricePipe } from '../../../pipes/total-price.pipe';
+import { DiscountPricePipe } from '../../../pipes/discount-price.pipe';
 
 @Component({
   selector: 'app-single-product',
-  imports: [CommonModule, Rating, FormsModule, Toast, ButtonModule, RouterModule],
+  imports: [CommonModule, Rating, TotalPricePipe,DiscountPricePipe ,FormsModule, Toast, ButtonModule, RouterModule],
   templateUrl: './single-product.component.html',
   styleUrl: './single-product.component.scss',
   providers: [MessageService]

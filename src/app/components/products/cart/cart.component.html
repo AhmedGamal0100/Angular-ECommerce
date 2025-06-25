@@ -35,7 +35,7 @@
                     </td>
                     <td class="remove-buttons"><button (click)="removeItem(product)">Remove</button></td>
                     <td class="item-total-price px-0">
-                        {{ (product.price | totalPrice:product.quantity) + '' | currency: 'USD':'symbol' :'1.2-2' }}
+                        ${{ (product.price | discountPrice:product.discountPercentage) * (product.quantity || 1) | number:'1.2-2' }}
                     </td>
                 </tr>
             </ng-template>

@@ -7,7 +7,7 @@ This project demonstrates best practices in Angular development, UI design, and 
 
 ## 🚀 Technologies Used
 
-- **Angular 19** — Standalone components, signals, and modern Angular features
+- **Angular 19** — Standalone components, signals, guards, pipes, and modern Angular features
 - **PrimeNG** — UI component library for Angular (tables, toasts, messages, rating, etc.)
 - **RxJS** — Reactive programming for data streams and subscriptions
 - **TypeScript** — Strongly typed JavaScript for scalable code

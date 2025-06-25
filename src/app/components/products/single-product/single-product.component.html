@@ -14,7 +14,16 @@
         </a>
         <div class="single-card__category">
             <p>Category: {{productObj()?.category}}</p>
-            <h5>${{productObj()?.price}}</h5>
+            <div class="single-card__prices">
+                <h5 class="disc-price"> ${{ (productObj()!.price | discountPrice:productObj()!.discountPercentage) *
+                    (productObj()?.quantity
+                    || 1) | number:'1.2-2' }}
+                </h5>
+                <h5 class="old-price">{{(productObj()!.price | totalPrice:(productObj()?.quantity ?? 1)) + '' |
+                    currency:
+                    'USD':'symbol' :'1.2-2'}}</h5>
+            </div>
+
         </div>
         <div class="mb-4 flex justify-center">
             <p-rating class="custom-rate" [(ngModel)]="ratingStars" [disabled]="true" />

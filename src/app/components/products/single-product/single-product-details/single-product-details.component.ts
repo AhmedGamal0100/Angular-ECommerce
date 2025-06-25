@@ -7,10 +7,11 @@ import { CartService } from '../../../../services/cart.service';
 import { RouterModule } from '@angular/router';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DiscountPricePipe } from '../../../../pipes/discount-price.pipe';
 
 @Component({
   selector: 'app-single-product-details',
-  imports: [CommonModule, RouterModule, Toast],
+  imports: [CommonModule, RouterModule, Toast, DiscountPricePipe],
   templateUrl: './single-product-details.component.html',
   styleUrl: './single-product-details.component.scss',
   providers: [MessageService]

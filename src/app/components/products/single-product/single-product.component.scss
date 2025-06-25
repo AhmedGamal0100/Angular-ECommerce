@@ -48,10 +48,21 @@
             display: flex;
             justify-content: space-between;
 
-            h5 {
-                font-size: 1rem;
-                font-weight: bolder;
-                text-align: right;
+            .single-card__prices {
+
+                h5 {
+                    font-size: 1rem;
+                    font-weight: bolder;
+                    text-align: right;
+                    line-height: 1rem;
+                }
+
+                .old-price{
+                    font-size: 0.8rem;
+                    color: var(--p-surface-500);
+                    line-height: 0.8rem;
+                    text-decoration: line-through;
+                }
             }
 
             p {

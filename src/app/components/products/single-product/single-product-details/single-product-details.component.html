@@ -1,7 +1,7 @@
 <div class="details-card">
     <div class="details-img-overall">
         <div class="details-img">
-            <img [src]="selectedImage" [alt]="product.title" />
+            <img [src]="selectedImage" alt="image" />
             <span class="badge" [ngClass]="{
       'in-stock': product.availabilityStatus === 'In Stock',
       'low-stock': product.availabilityStatus === 'Low Stock'
@@ -29,7 +29,7 @@
         </div>
         <hr>
         <div class="price-row">
-            <span class="price">${{ product.price }}</span>
+            <span class="price">${{ product.price | discountPrice:product.discountPercentage }}</span>
             <span class="discount" *ngIf="product?.discountPercentage">
                 -{{ product.discountPercentage }}%
             </span>

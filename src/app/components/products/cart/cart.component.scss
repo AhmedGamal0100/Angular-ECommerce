@@ -100,8 +100,8 @@ section {
     .message {
         padding-inline: 3rem;
 
-        ::ng-deep .p-message.p-message-error{
-            scale: 0.91; 
+        ::ng-deep .p-message.p-message-error {
+            scale: 0.91;
         }
     }
 }
@@ -126,4 +126,88 @@ section {
 
 .item-total-price {
     text-align: center;
+}
+
+@media (max-width: 600px) {
+    section {
+        .container {
+            padding: 0 0.25rem;
+        }
+
+        .img-container {
+            img {
+                width: 100%;
+                max-width: 120px;
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    }
+
+    :host ::ng-deep .p-datatable-thead>tr>th,
+    :host ::ng-deep .p-datatable-tbody>tr>td {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.2rem;
+        min-width: 60px;
+        max-width: 120px;
+        word-break: break-word;
+    }
+
+    :host ::ng-deep .p-datatable-tbody>tr>td {
+        max-width: 7rem;
+    }
+
+    :host ::ng-deep .p-datatable-thead>tr>th {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.2rem;
+    }
+
+    .header,
+    .footer {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.5rem;
+    }
+
+    .increment-buttons {
+        .buttons {
+            flex-direction: column;
+            gap: 0.3rem;
+
+            button,
+            div.enumerator {
+                width: 2.5rem;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .message {
+            padding-inline: 0.5rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    .remove-buttons {
+        button {
+            width: max-content;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.8rem;
+        }
+    }
+
+    .item-total-price {
+        font-size: 0.95rem;
+        padding: 0.2rem 0;
+    }
+
+    :host ::ng-deep .p-datatable-tbody>tr>td p {
+        max-height: 4.5rem; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        margin: 0;
+    }
 }

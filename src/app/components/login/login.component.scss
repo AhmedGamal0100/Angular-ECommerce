@@ -61,3 +61,31 @@
         }
     }
 }
+
+@media (max-width: 600px) {
+    .login {
+        .container {
+            width: 100%;
+            padding-top: 1rem;
+            border-top-width: 0.5px;
+
+            form {
+                width: 95%;
+                min-width: 0;
+                padding: 0.5rem 0.25rem;
+                margin: 0 auto 0.75rem auto;
+
+                button {
+                    font-size: 0.95rem;
+                    padding-block: 0.5rem;
+                }
+            }
+        }
+
+        .register {
+            a {
+                font-size: 0.95rem;
+            }
+        }
+    }
+}

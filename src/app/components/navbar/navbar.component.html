@@ -1,14 +1,14 @@
 <nav>
     <div class="container">
         <a href="#">
-            <h2>Products App</h2>
+            <h2>ECommerce</h2>
         </a>
         <ul class="routing">
             @if (!isLogin()) {
             <li><a routerLink="/login">Login</a></li>
             <li><a routerLink="/register">Register</a></li>
             } @else {
-            <li><a routerLink="/login" (click)="loggingOut()">Log out</a></li>
+            <li><a routerLink="/login" (click)="loggingOut()" class="logout">Log out</a></li>
             <li><a routerLink="/products">Products</a></li>
             <li class=" cart">
                 <a routerLink="/cart"><i class="pi pi-shopping-cart"></i></a>

@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { Message } from 'primeng/message';
 import { TotalPricePipe } from "../../../pipes/total-price.pipe";
 import { Router } from '@angular/router';
+import { DiscountPricePipe } from '../../../pipes/discount-price.pipe';
 
 
 @Component({
   selector: 'app-cart',
-  imports: [TableModule, TagModule, RatingModule, ButtonModule, Message, CommonModule, FormsModule, TotalPricePipe],
+  imports: [TableModule,DiscountPricePipe, TagModule, RatingModule, ButtonModule, Message, CommonModule, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   providers: []
@@ -66,6 +67,11 @@ export class CartComponent implements OnInit {
   }
 
   get totalPriceValue(): number {
-    return this.objectInCart.reduce((sum, p) => sum + (p.price * (p.quantity || 1)), 0);
+    return this.objectInCart.reduce((sum, p) => {
+      const discounted = p.discountPercentage && p.discountPercentage > 0
+        ? +(p.price * (1 - p.discountPercentage / 100)).toFixed(2)
+        : p.price;
+      return sum + discounted * (p.quantity || 1);
+    }, 0);
   }
 }
