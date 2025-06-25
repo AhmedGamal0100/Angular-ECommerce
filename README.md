@@ -1,59 +1,103 @@
-# Lab4
+# 🛒 Angular E-Commerce Lab4
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+A modern, feature-rich e-commerce web application built with **Angular** and **PrimeNG**.  
+This project demonstrates best practices in Angular development, UI design, and state management.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Technologies Used
 
-```bash
-ng serve
+- **Angular 19** — Standalone components, signals, and modern Angular features
+- **PrimeNG** — UI component library for Angular (tables, toasts, messages, rating, etc.)
+- **RxJS** — Reactive programming for data streams and subscriptions
+- **TypeScript** — Strongly typed JavaScript for scalable code
+- **SCSS** — Modular and maintainable styling
+- **Angular CLI** — Project scaffolding, building, and testing
+
+---
+
+## ✨ Features
+
+- **User Authentication**
+  - Login and registration forms with validation
+  - Route guards for protected pages
+
+- **Product Catalog**
+  - Product listing with search and filtering
+  - Responsive product cards with images, ratings, and categories
+  - Product details page with image gallery, stock status, and full description
+
+- **Shopping Cart**
+  - Add, remove, and update product quantities
+  - Cart persists quantities and updates dynamically
+  - Total price calculation with currency formatting
+
+- **UI/UX Enhancements**
+  - PrimeNG components: tables, buttons, messages, toasts, rating, progress spinner, etc.
+  - Toast notifications for cart actions and errors
+  - Responsive and modern SCSS-based design
+
+- **Best Practices**
+  - Angular signals for state management
+  - Standalone components and lazy loading for performance
+  - Modular service architecture (ProductService, CartService, etc.)
+  - Type-safe interfaces for all data models
+
+---
+
+## 🖥️ Getting Started (If Downloaded)
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server:**
+   ```bash
+   ng serve
+   ```
+   Visit [http://localhost:4200](http://localhost:4200) in your browser.
+
+---
+
+## 🧩 Project Structure
+
+```
+src/
+  app/
+    components/
+      products/
+        cart/
+        single-product/
+        single-product-details/
+      login/
+      register/
+    services/
+    pipes/
+    guards/
+  assets/
+  styles/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠️ Scripts
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Start Dev Server:** `ng serve`
+- **Build for Production:** `ng build`
+- **Run Unit Tests:** `ng test`
+- **Generate Component:** `ng generate component component-name`
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📚 Further Reading
 
-```bash
-ng generate --help
-```
+- [Angular Documentation](https://angular.dev/docs)
+- [PrimeNG Documentation](https://primeng.org/)
+- [Angular CLI Reference](https://angular.dev/tools/cli)
 
-## Building
+---
 
-To build the project run:
+## 💡 Author & License
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Created by Ahmed.G 
