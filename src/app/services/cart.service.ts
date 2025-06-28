@@ -16,6 +16,7 @@ export class CartService {
     } else {
       this._inCart.set([...this._inCart(), { ...productObj, quantity: 1 }]);
     }
+    this.addInLocalStorage()
   }
 
   addInCartFromDetails(productObj: IProducts) {
@@ -27,6 +28,7 @@ export class CartService {
       } else {
         this._inCart.set([...this._inCart(), { ...productObj }]);
       }
+      this.addInLocalStorage()
     } else {
       this.setInCart(productObj);
     }
@@ -35,6 +37,7 @@ export class CartService {
   removeFromCart(productObj: IProducts) {
     const updatedCart = this._inCart().filter(item => item.id !== productObj.id);
     this._inCart.set(updatedCart);
+    this.addInLocalStorage();
   }
 
   getInCart() {
@@ -61,5 +64,7 @@ export class CartService {
     return this._inCart().reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
   }
 
-
+  addInLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this._inCart()))
+  }
 }

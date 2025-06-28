@@ -11,10 +11,11 @@ import { RouterModule } from '@angular/router';
 import { ProductDetailsService } from '../../../services/product-details.service';
 import { TotalPricePipe } from '../../../pipes/total-price.pipe';
 import { DiscountPricePipe } from '../../../pipes/discount-price.pipe';
+import { WishListStore } from '../../../stores/wish-list.store';
 
 @Component({
   selector: 'app-single-product',
-  imports: [CommonModule, Rating, TotalPricePipe,DiscountPricePipe ,FormsModule, Toast, ButtonModule, RouterModule],
+  imports: [CommonModule, Rating, TotalPricePipe, DiscountPricePipe, FormsModule, Toast, ButtonModule, RouterModule],
   templateUrl: './single-product.component.html',
   styleUrl: './single-product.component.scss',
   providers: [MessageService]
@@ -23,10 +24,20 @@ export class SingleProductComponent {
   private _cartService = inject(CartService);
   private messageService = inject(MessageService);
   private _productDetails = inject(ProductDetailsService);
+  private _wishList = inject(WishListStore)
+
   ratingStars = signal(0);
   productObj = input<IProducts>();
-  isClicked = signal<boolean>(false);
   objectInCart!: IProducts[];
+  isClicked = signal<boolean>(false);
+  isWish = signal<boolean>(false);
+
+  ngOnInit() {
+    const product = this.productObj();
+    if (product) {
+      this.isWish.set(this._wishList.isProductsInWish(product));
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['productObj']) {
@@ -59,6 +70,24 @@ export class SingleProductComponent {
     }
   }
 
+  addToWish() {
+    const product = this.productObj();
+    if (product) {
+      this._wishList.addToWishList(product);
+      console.log(this._wishList.wishList());
+      this.isWish.set(true);
+    }
+  }
+
+  removeFromWish() {
+    const product = this.productObj();
+    if (product) {
+      this._wishList.removeFromWishList(product);
+      console.log(this._wishList.wishList());
+      this.isWish.set(false);
+    }
+  }
+
   showNotify(summaryPar: string, detailPar: string) {
     this.messageService.add({ severity: 'secondary', summary: summaryPar, detail: detailPar });
   }
@@ -68,4 +97,5 @@ export class SingleProductComponent {
       this._productDetails.setId(product.id);
     }
   }
+
 }

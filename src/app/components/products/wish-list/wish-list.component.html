@@ -1,0 +1,36 @@
+<div class="container-wish">
+    @for (item of wishList() ; track item.id) {
+    <div class="single-card__container">
+        <div class="single-card__img">
+            <img [src]="item.images[0]" alt="card image">
+        </div>
+        <div class="single-card__content p-3">
+            <h5>{{item.title}}</h5>
+            <div class="single-card__category">
+                <p>Category: {{item.category}}</p>
+                <div class="single-card__prices">
+                    <h5 class="disc-price">
+                        ${{ (item.price | discountPrice:item.discountPercentage) * (item.quantity|| 1) | number:
+                        '1.2-2' }}
+                    </h5>
+                    <h5 class="old-price">{{(item.price | totalPrice:(item.quantity)) + '' |
+                        currency:'USD':'symbol' :'1.2-2'}}</h5>
+                </div>
+
+            </div>
+            <div class="btns">
+                @if (isClickedMap()[item.id]) {
+                <button class="w-75 btn btn-dark" (click)="addToCart(item.id)">Remove from Cart</button>
+                } @else {
+                <button class="w-75 btn btn-light" (click)="addToCart(item.id)">Add to Cart</button>
+                }
+                <button class="w-20 btn btn-light" (click)="removeFromWish(item.id)"><i
+                        class="pi pi-heart-fill"></i></button>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="card flex justify-center gap-2">
+        <p-toast />
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { ProductsService } from '../../services/products.service';
 import { Subscription } from 'rxjs';
 import { IProducts } from '../../interface/products';
 import { Router, RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -17,6 +18,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   private _productsService = inject(ProductsService);
+  private _cartService = inject(CartService);
   private _router = inject(Router);
   searchInput = signal('');
   cardsObj: IProducts[] = [];
@@ -33,6 +35,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.checkLocalStorage();
     this.routerSubscription = this._router.events.subscribe(() => {
       this.showList = !this._router.url.includes('/products/details/');
     });
@@ -44,10 +47,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
       },
       error: err => console.error('Failed to load API', err)
     });
+
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.routerSubscription.unsubscribe();
+  }
+
+  checkLocalStorage() {
+    const cartProd = localStorage.getItem('cartItems');
+    if (cartProd != null) {
+      const products: IProducts[] = JSON.parse(cartProd);
+      products.forEach(product => {
+        this._cartService.setInCart(product);
+      });
+    }
   }
 }

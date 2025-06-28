@@ -28,11 +28,18 @@
         <div class="mb-4 flex justify-center">
             <p-rating class="custom-rate" [(ngModel)]="ratingStars" [disabled]="true" />
         </div>
-        @if (isClicked()) {
-        <button class="w-100 btn btn-dark" (click)="addToCart()">Remove from Cart</button>
-        } @else {
-        <button class="w-100 btn btn-light" (click)="addToCart()">Add to Cart</button>
-        }
+        <div class="btns">
+            @if (isClicked()) {
+            <button class="w-75 btn btn-dark" (click)="addToCart()">Remove from Cart</button>
+            } @else {
+            <button class="w-75 btn btn-light" (click)="addToCart()">Add to Cart</button>
+            }
+            @if (!isWish()) {
+            <button class="w-20 btn btn-light" (click)="addToWish()"><i class="pi pi-heart"></i></button>
+            } @else {
+            <button class="w-20 btn btn-light" (click)="removeFromWish()"><i class="pi pi-heart-fill"></i></button>
+            }
+        </div>
     </div>
 </div>
 <div class="card flex justify-center gap-2">

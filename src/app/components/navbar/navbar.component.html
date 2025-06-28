@@ -14,6 +14,10 @@
                 <a routerLink="/cart"><i class="pi pi-shopping-cart"></i></a>
                 <div>{{ enumerator }}</div>
             </li>
+            <li class="wish">
+                <a routerLink="/wish"><i class="pi pi-heart-fill"></i></a>
+                <div>{{ _wishList.wishListTotal() }}</div>
+            </li>
             }
         </ul>
     </div>

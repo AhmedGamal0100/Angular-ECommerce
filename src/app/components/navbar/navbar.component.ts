@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { IProducts } from '../../interface/products';
 import { RouterModule } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { WishListStore } from '../../stores/wish-list.store';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class NavbarComponent implements DoCheck {
   private _cartService = inject(CartService)
   private _localStorageService = inject(LocalStorageService)
+  readonly _wishList = inject(WishListStore)
 
   enumerator = 0;
   isLogin = signal<boolean>(this._localStorageService.getIsLogin());
@@ -23,9 +25,9 @@ export class NavbarComponent implements DoCheck {
       this.isLogin.set(this._localStorageService.getIsLogin());
     })
   }
-
+  
   ngDoCheck(): void {
-    this.enumerator = this._cartService.getEnumerator();
+    this.enumerator = this._cartService.getEnumerator();    
   }
 
   loggingOut() {

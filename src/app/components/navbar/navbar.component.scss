@@ -26,12 +26,28 @@ nav {
                 padding: 0.5rem 1rem;
             }
 
-            li:hover:not(.cart) {
+            li:hover:not(.cart, .wish) {
                 background-color: rgba(128, 128, 128, 0.2);
                 border-radius: 0.5rem;
             }
 
             .cart {
+                position: relative;
+
+                div {
+                    position: absolute;
+                    top: 10%;
+                    right: 0;
+                    font-size: 0.75rem;
+                    width: 1rem;
+                    height: 1rem;
+                    background-color: rgba(128, 128, 128, 0.5);
+                    border-radius: 0.25rem;
+                    text-align: center;
+                }
+            }
+
+            .wish {
                 position: relative;
 
                 div {
@@ -88,7 +104,7 @@ nav {
                     }
                 }
 
-                .logout{
+                .logout {
                     display: inline-block;
                     width: max-content;
                 }
